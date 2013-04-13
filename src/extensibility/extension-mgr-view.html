@@ -1,0 +1,40 @@
+<table class="table">
+    <tr>
+        <th class="ext-name">Extension</th>
+        <th class="ext-desc">Description</th>
+    </tr>
+    {{#registry}}
+        <tr>
+            <td>
+                <a href="https://s3.amazonaws.com/repository.brackets.io/{{metadata.name}}/{{metadata.name}}-{{metadata.version}}.zip">
+                    {{#metadata.title}}{{metadata.title}}{{/metadata.title}}{{^metadata.title}}{{metadata.name}}{{/metadata.title}}</a>
+                <span class="muted ext-version">{{metadata.version}}</span><br/>
+                <span class="muted ext-author">
+                    by 
+                    {{#metadata.author.name}}
+                        {{metadata.author.name}} /
+                    {{/metadata.author.name}}
+                    <a href="{{ownerLink}}">{{formatUserId}}</a>
+                </span>
+                <span class="muted ext-date">on {{lastVersionDate}}</span>
+            </td>
+            <td>
+                {{#metadata.description}}
+                    {{metadata.description}}
+                {{/metadata.description}}
+                {{^metadata.description}}
+                    <span class="muted"><em>No description</em></span>
+                {{/metadata.description}}
+                {{#metadata.keywords.length}}
+                    <span class="muted ext-keywords">Keywords:
+                {{/metadata.keywords.length}}
+                {{#metadata.keywords}}
+                    {{.}}
+                {{/metadata.keywords}}
+                {{#metadata.keywords.length}}
+                    </span>
+                {{/metadata.keywords.length}}
+            </td>
+        </tr>
+    {{/registry}}
+</table>
